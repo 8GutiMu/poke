@@ -1,42 +1,43 @@
-$.getJSON( "http://pokeapi.co/api/v2/pokemon/", function( response ) {
-    var pokemons = response.results;
-    crearPokemons(pokemons)
-});
+var plantillaPokemon =  '<ul>'+
+                        '<li >Altura: __altura__</li>'+
+                        '<li>Experiencia: __experiencia__</li>'+
+                        '</ul>'
 
- $(document).ready(function(){
-    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-    $('.modal').modal();
-  });
+var cargarPagina = function () {
+    cargarPokemones();
+    $(document).on("click", ".pokemon", entrarAPokemon);
+     
+};
 
-function crearPokemons(pokemons) {
-	var contenedor = document.getElementById("contenedorPokemon");
+var cargarPokemones = function () {
+    var url = 'http://pokeapi.co/api/v2/pokemon/';
+   $.getJSON(url, function(response){
+       var pokemons = response.results;
+       mostrarPokemones(pokemons);
+   })
+};
 
-	pokemons.forEach(function (pokemon) {
-        var div = document.createElement("div");
-        var img= document.createElement("img")
-		var p = document.createElement("p");
-		
-        p.textContent = pokemon.name;
-        div.data("poke"+pokemon.name) = pokemon""
-        console.log(pokemon.url)
-      
+var mostrarPokemones = function (pokemons) {
+    var $contenedorPokemones = $("#contenedorPokemon")
+    pokemons.forEach(function (pokemon) {
+        var $div = $("<div />");
+        $div.addClass("pokemon");
+        $div.text(pokemon.name);
+        $div.attr("data-url", pokemon.url);
+        $contenedorPokemones.append($div);
+})
+}
+
+var entrarAPokemon = function(){
+     var url = ($(this).data("url"));
+     console.log(url)
+     $.getJSON(url,function(response){
+         console.log("dentro", response)
+     })
        
-        
-        img.src="https://dummyimage.com/150x150/000/fff"
-		div.appendChild(img);
-        div.appendChild(p);
-        
-        contenedor.appendChild(div)
-        
-//        div.addEventListener("click",mostrar)
-	});
 }
 
-var pokeInd = function(){
-    $.getJSON( "http://pokeapi.co/api/v2/pokemon/1/", function( response ) {
-    var pokemon = response.results;
-    console.log(pokemon)
-});
-}
 
-pokeInd()
+    
+
+$(document).ready(cargarPagina);
