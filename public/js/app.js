@@ -6,7 +6,7 @@ var plantillaPokemon =  '<ul>'+
 var cargarPagina = function () {
     cargarPokemones();
     $(document).on("click", ".pokemon", entrarAPokemon);
-     
+     console.log("hola")
 };
 
 var cargarPokemones = function () {
