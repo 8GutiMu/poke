@@ -1,13 +1,7 @@
-var plantillaPokemon = '<ul>' +
-    '<li >Altura: __altura__</li>' +
-    '<li>Experiencia: __experiencia__</li>' +
-    '</ul>'
-
 var cargarPagina = function () {
     cargarPokemones();
     $(document).on("click", ".pokemon", mostrarPokemon);
-    $(".pokemon").modal();
-
+    
 };
 
 var cargarPokemones = function () {
@@ -22,11 +16,15 @@ var mostrarPokemones = function (pokemons) {
     var $contenedorPokemones = $("#contenedorPokemon")
     pokemons.forEach(function (pokemon) {
         var $div = $("<div />");
+        var $img = $("<img src='https://dummyimage.com/150/000/fff'>")
         $div.addClass("pokemon");
-        $div.text(pokemon.name);
+        $div.text((pokemon.name).toUpperCase());
         $div.attr("data-url", pokemon.url);
+        
+        $contenedorPokemones.append($img);
         $contenedorPokemones.append($div);
     })
+    
 }
 
 var mostrarPokemon = function () {
@@ -37,9 +35,7 @@ var mostrarPokemon = function () {
         $("#habitad_modal").html("<h6><strong>Habitad: </strong>" + response.habitat.name + "</h6>");
         $("#shape_modal").html("<h6><strong>Forma: </strong>" + response.shape.name + "</h6>")
         $("#genera_modal").html("<h6><strong>Genera: </strong>" + response.genera[0].genus + "</h6>");
-
     })
-
 }
 
 
