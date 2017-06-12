@@ -10,7 +10,7 @@ var cargarPagina = function () {
 };
 
 var cargarPokemones = function () {
-    var url = 'http://pokeapi.co/api/v2/pokemon/';
+    var url = 'https://pokeapi.co/api/v2/pokemon/';
    $.getJSON(url, function(response){
        var pokemons = response.results;
        mostrarPokemones(pokemons);
