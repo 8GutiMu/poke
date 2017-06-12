@@ -32,7 +32,7 @@ var entrarAPokemon = function () {
     var url = ($(this).data("url"));
     console.log(url)
     $.getJSON(url, function (response) {
-        console.log("dentro", response.abilities)
+        console.log("dentro", response.abilities[0])
     })
 
 }
