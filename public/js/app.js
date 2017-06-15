@@ -31,7 +31,7 @@ var mostrarPokemon = function () {
     var url = ($(this).data("url"));
     console.log(url)
     $.getJSON(url, function (response) {
-        $("#nombre_modal").html("<h6><strong>Color: </strong>" + response.color.name + "</h6>");
+        $("#nombre_modal").text(response.color.name);
         $("#habitad_modal").html("<h6><strong>Habitad: </strong>" + response.habitat.name + "</h6>");
         $("#shape_modal").html("<h6><strong>Forma: </strong>" + response.shape.name + "</h6>")
         $("#genera_modal").html("<h6><strong>Genera: </strong>" + response.genera[0].genus + "</h6>");
